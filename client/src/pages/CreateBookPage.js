@@ -5,7 +5,6 @@ import { Form, Button } from 'react-bootstrap';
 
 export default function CreateBookPage() {
     const navigate = useNavigate();
-
     const [book, setBook] = useState({
         isbn: '',
         title: '',
