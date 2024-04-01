@@ -35,7 +35,6 @@ export default function EditPage() {
         try {
             const resp = await axios.put(`/book/editBook/${id}`, book);
             setIsUpdated(true);
-            console.log(resp.data);
         } catch (error) {
             console.log("Error editing " + error);
         }

@@ -27,7 +27,6 @@ export default function CreateBookPage() {
         try {
             const resp = await axios.post('/book/createBook', book);
             setIsCreated(true);
-            console.log(resp.data);
         } catch (error) {
             console.log("Error creating book " + error);
         }
