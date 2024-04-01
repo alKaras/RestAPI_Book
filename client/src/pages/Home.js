@@ -12,7 +12,6 @@ export default function Home() {
     const fetchData = async () => {
         try {
             const resp = await axios.get('/book/getBooks');
-            console.log(resp.data.data);
             setBooks(resp.data.data);
             setIsLoading(false);
         } catch (error) {

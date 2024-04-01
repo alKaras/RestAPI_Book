@@ -2,8 +2,9 @@ const express = require('express')
 const cors = require('cors')
 const mongoose = require('mongoose')
 
-const PORT = 3001;
-const MONGO_URL = `mongodb://127.0.0.1:27017/books`
+require('dotenv').config()
+
+const PORT = process.env.APP_PORT;
 const bookRouter = require('./routers/BookRouter');
 
 const app = express();
@@ -15,7 +16,7 @@ app.listen(PORT, () => {
     console.log(`Server is started successfuly on port ${PORT}`);
 })
 
-mongoose.connect(MONGO_URL)
+mongoose.connect(process.env.DB_URL)
     .then(() => console.log('Connected successfuly'))
     .catch(() => console.log('Couldn`t connect. Error'));
 
