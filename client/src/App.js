@@ -1,7 +1,8 @@
 import { Routes, Route } from 'react-router-dom'
 import Home from './pages/Home';
-import CreateBookPage from './pages/CreateBookPage.js'
+import CreateBookPage from './pages/createBookPage.js'
 import EditPage from './pages/EditPage.js';
+import Login from './pages/Login/index.js';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/create-book' element={<CreateBookPage />} />
         <Route path='/edit-book/:id' element={<EditPage />} />
+        <Route path='/auth/login' element={<Login />} />
       </Routes>
     </div>
   );
