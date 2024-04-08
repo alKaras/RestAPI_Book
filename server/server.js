@@ -6,6 +6,7 @@ require('dotenv').config()
 
 const PORT = process.env.APP_PORT;
 const bookRouter = require('./routers/BookRouter');
+const userRouter = require('./routers/userRouter');
 
 const app = express();
 app.use(express.json())
@@ -23,3 +24,4 @@ mongoose.connect(process.env.DB_URL)
 
 
 app.use('/api/v1/book', bookRouter);
+app.use('/api/v1/user', userRouter);
