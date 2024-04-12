@@ -9,6 +9,9 @@ export default function Home() {
     const [books, setBooks] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [isDeleted, setIsDeleted] = useState(null);
+    const [user, setUser] = useState([]);
+    const [isAuth, setIsAuth] = useState(false);
+
     const fetchData = async () => {
         try {
             const resp = await axios.get('/book/getBooks');
@@ -17,6 +20,16 @@ export default function Home() {
         } catch (error) {
             console.log("Error fetching data");
             setIsLoading(true);
+        }
+    }
+
+    const fetchUser = async () => {
+        try {
+            const resp = await axios.get('/user/getUser');
+            setUser(resp.data.data);
+            setIsAuth(true);
+        } catch (error) {
+            console.log(error);
         }
     }
 
