@@ -11,6 +11,7 @@ export default function Header() {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
                         <Nav.Link href='create-book'>Create Book</Nav.Link>
+                        <Nav.Link href='auth/login'>Authorization</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
