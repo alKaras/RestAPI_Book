@@ -17,6 +17,7 @@ export default function Login() {
             const response = await axios.post('/user/auth/login', { email, password });
             const { token, data } = response.data;
             localStorage.setItem('token', token);
+            document.cookie = `token ${token}`
             setError('');
             setPassword('');
             setEmail('');
