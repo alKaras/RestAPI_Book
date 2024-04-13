@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Header from '../../components/Header';
 import { Form, Button } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from '../../axios.js'
 
 export default function Login() {
@@ -56,6 +56,7 @@ export default function Login() {
                 <Button variant="primary" type="submit">
                     Login
                 </Button>
+                <Link style={{marginLeft: "24px"}} to={'/auth/register'}>Register</Link>
             </Form>
 
         </>
