@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import axios from '../axios'
+import axios from '../../axios'
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 
@@ -41,7 +41,7 @@ export default function Header() {
                 <Navbar.Brand href='/'>Book-List</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="me-auto">
+                    <Nav style={{ marginLeft: 'auto' }}>
                         <Nav.Link href='create-book'>Create Book</Nav.Link>
                         {isAuth ?
                             <>

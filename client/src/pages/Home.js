@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Header from '../components/Header'
+import Header from '../components/Header/Header.jsx'
 import axios from '../axios.js'
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import Moment from 'react-moment'
