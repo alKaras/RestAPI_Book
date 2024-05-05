@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import Header from '../../../components/Header/Header.jsx';
 import { Form, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import axios from '../../../axios.js'
 import { useDispatch, useSelector } from 'react-redux';
-import { registerUser, selectIsRegged } from '../../../redux/slices/auth.js';
+import { registerUser, selectIsRegged } from '../../../redux/slices/authSlice.js';
 import { useForm } from 'react-hook-form';
 
 export default function Registration() {

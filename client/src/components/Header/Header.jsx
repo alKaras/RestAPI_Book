@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import axios from '../../axios'
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
-import { logout, selectIsLogged, userInfo } from '../../redux/slices/auth';
+import { logout, selectIsLogged, userInfo } from '../../redux/slices/authSlice';
 
 export default function Header() {
 

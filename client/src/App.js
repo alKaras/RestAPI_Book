@@ -6,7 +6,7 @@ import Login from './pages/Auth/Login';
 import Registration from './pages/Auth/Registration';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { getUser } from './redux/slices/auth.js';
+import { getUser } from './redux/slices/authSlice.js';
 
 function App() {
   const dispatch = useDispatch();

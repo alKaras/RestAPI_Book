@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import Header from '../../../components/Header/Header.jsx';
 import { Form, Button } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from '../../../axios.js'
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginUser, selectIsLogged } from '../../../redux/slices/auth.js';
+import { loginUser, selectIsLogged } from '../../../redux/slices/authSlice.js';
 
 export default function Login() {
     const isLogged = useSelector(selectIsLogged);
