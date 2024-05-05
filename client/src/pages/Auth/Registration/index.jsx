@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import Header from '../components/Header/Header.jsx';
+import Header from '../../../components/Header/Header.jsx';
 import { Form, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import axios from '../axios.js'
+import axios from '../../../axios.js'
 
 export default function Registration() {
     const [isRegistered, setIsRegistered] = useState(false);

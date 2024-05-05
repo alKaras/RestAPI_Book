@@ -19,7 +19,7 @@ const register = async (req, res) => {
         });
 
         const user = await newUser.save();
-        return res.status(200).json({ data: user })
+        return res.status(200).json({ user: user })
     } catch (error) {
         return res.status(500).json({ message: "Fatal Error " + error })
     }
@@ -36,6 +36,7 @@ const login = async (req, res) => {
             {
                 userId: user._id,
                 userName: user.username,
+                userRole: user.userRole,
             },
             process.env.JWT_SECRET,
             {
@@ -43,7 +44,7 @@ const login = async (req, res) => {
             }
         );
         return res.json({
-            data: user,
+            user: user,
             token: token,
         })
     } else {
@@ -59,6 +60,7 @@ const getUser = async (req, res) => {
                 {
                     userId: user._id,
                     userName: user.username,
+                    userRole: user.userRole,
                 },
                 process.env.JWT_SECRET,
                 {

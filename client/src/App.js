@@ -1,11 +1,20 @@
 import { Routes, Route } from 'react-router-dom'
 import Home from './pages/Home';
-import CreateBookPage from './pages/createBookPage.js'
-import EditPage from './pages/EditPage.js';
-import Login from './pages/Login/index.js';
-import Registration from './pages/Registration.js';
+import CreateBookPage from './pages/createBookPage.jsx'
+import EditPage from './pages/EditPage.jsx';
+import Login from './pages/Auth/Login';
+import Registration from './pages/Auth/Registration';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { getUser } from './redux/slices/auth.js';
 
 function App() {
+  const dispatch = useDispatch();
+  
+  useEffect(() => {
+    dispatch(getUser())
+  }, [dispatch]);
+
   return (
     <div className="container">
       <Routes>
