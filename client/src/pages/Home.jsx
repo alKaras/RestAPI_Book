@@ -1,41 +1,29 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import Header from '../components/Header/Header.jsx'
 import axios from '../axios.js'
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import Moment from 'react-moment'
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchBooks, fetchRemovedBook } from '../redux/slices/bookSlice.js';
 export default function Home() {
 
-    const [books, setBooks] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
-    const [isDeleted, setIsDeleted] = useState(null);
-
-    const fetchData = async () => {
-        try {
-            const resp = await axios.get('/book/getBooks');
-            setBooks(resp.data.data);
-            setIsLoading(false);
-        } catch (error) {
-            console.log("Error fetching data");
-            setIsLoading(true);
-        }
-    }
-
-
+    const dispatch = useDispatch();
+    const { books } = useSelector((state) => state.books);
+    const bookIsDeleted = useSelector((state) => state.books.books.isDeleted === 'done');
+    const bookIsLoading = useSelector((state) => state.books.books.isLoading === 'loading');
 
     useEffect(() => {
-        fetchData();
-    }, [isDeleted])
+        dispatch(fetchBooks());
 
-    const deleteBook = async (id) => {
-        const respDel = await axios.delete(`/book/deleteBook/${id}`);
-        setIsDeleted(id);
-    }
+        if (bookIsDeleted) {
+            dispatch(fetchBooks());
+        }
+    }, [dispatch, bookIsDeleted]);
 
     const handleDelete = (id) => {
-        deleteBook(id);
+        dispatch(fetchRemovedBook(id));
     }
-
 
     return (
         <>
@@ -43,7 +31,7 @@ export default function Home() {
             <Container className='mt-4'>
                 <Row>
                     {
-                        !isLoading ? books.map(book => (
+                        !bookIsLoading ? (books.items).map(book => (
                             <Col key={book.id} md={4} className="mb-4">
                                 <Card>
                                     <Card.Body>
