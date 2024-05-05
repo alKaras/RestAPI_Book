@@ -33,7 +33,7 @@ const getBooks = async (req, res) => {
 }
 
 const getBook = async (req, res) => {
-    const bookID = req.params.bookID;
+    const bookID = req.params.bookID.toString();
     const book = await Book.findById(bookID);
 
     if (!book) {

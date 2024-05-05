@@ -29,6 +29,15 @@ export const createBook = createAsyncThunk('book/create', async (params, { _, re
     }
 })
 
+export const getBookById = createAsyncThunk('book/getById', async (id, { rejectWithValue }) => {
+    try {
+        const { data } = await axios.get(`/book/getBook/${id}`);
+        return data;
+    } catch (error) {
+        return rejectWithValue(error.response.message);
+    }
+})
+
 const initialState = {
     books: {
         items: [],
@@ -99,7 +108,21 @@ const bookSlice = createSlice({
                 state.books.isLoading = 'error'
                 state.error = action.payload.message
             })
+            .addCase(getBookById.pending, (state) => {
+                state.books.isLoading = 'loading'
+                state.error = null
+            })
+            .addCase(getBookById.fulfilled, (state, action) => {
+                state.books.isLoading = 'loaded'
+                state.books.item = action.payload?.data
+                state.error = null
+            })
+            .addCase(getBookById.rejected, (state, action) => {
+                state.books.isLoading = 'error'
+                state.error = action.payload.message
+            })
     }
 })
 
 export const bookReducer = bookSlice.reducer;
+export const bookByIdData = (state) => (state.books.books.item)
