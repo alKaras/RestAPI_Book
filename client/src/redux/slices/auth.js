@@ -98,7 +98,7 @@ const authSlice = createSlice({
     }
 })
 
-export const selectIsRegded = (state) => (state.auth.isRegistered)
+export const selectIsRegged = (state) => (state.auth.isRegistered)
 export const selectIsLogged = (state) => Boolean(state.auth.token)
 export const userInfo = (state) => (state.auth.user)
 
