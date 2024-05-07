@@ -13,6 +13,8 @@ export default function Home() {
     const bookIsDeleted = useSelector((state) => state.books.books.isDeleted === 'done');
     const bookIsLoading = useSelector((state) => state.books.books.isLoading === 'loading');
     const user = useSelector(userInfo);
+    const isLoadedUser = useSelector((state) => state.auth.isLoading === 'loaded');
+    console.log(user);
 
     useEffect(() => {
         dispatch(fetchBooks());
@@ -28,44 +30,46 @@ export default function Home() {
 
     return (
         <>
-            <Header />
-            <Container className='mt-4'>
-                <Row>
-                    {
-                        !bookIsLoading ? (books.items).map(book => (
-                            <Col key={book.id} md={4} className="mb-4">
-                                <Card>
-                                    <Card.Body>
-                                        <Card.Title>{book.title}</Card.Title>
-                                        <Card.Text style={{ color: 'gray' }}>{book.isbn}</Card.Text>
-                                        <Card.Text>Author: {book.author}</Card.Text>
-                                        <Card.Text>Publisher: {book.publisher}</Card.Text>
-                                        <Card.Text>Number of Pages: {book.numOfPage}</Card.Text>
-                                        <Card.Text>Publishing Date: <Moment format="YYYY/MM/DD">
-                                            {book.pubdate}
-                                        </Moment>
-                                        </Card.Text>
-                                    </Card.Body>
-                                    {user.userRole === 'author' ?
-                                        <Card.Footer>
-                                            <Button variant="primary" className="me-4"><Link style={{ textDecoration: "none", color: "#fff" }} to={`/edit-book/${book._id}`}>Edit</Link></Button>
-                                            <Button variant="danger" onClick={() => { handleDelete(book._id) }}>Delete</Button>
-                                        </Card.Footer>
-                                        :
-                                        <>
-                                        </>
-                                    }
+            <>
+                < Header />
+                <Container className='mt-4'>
+                    <Row>
+                        {
+                            !bookIsLoading ? (books.items).map(book => (
+                                <Col key={book.id} md={4} className="mb-4">
+                                    <Card>
+                                        <Card.Body>
+                                            <Card.Title>{book.title}</Card.Title>
+                                            <Card.Text style={{ color: 'gray' }}>{book.isbn}</Card.Text>
+                                            <Card.Text>Author: {book.author}</Card.Text>
+                                            <Card.Text>Publisher: {book.publisher}</Card.Text>
+                                            <Card.Text>Number of Pages: {book.numOfPage}</Card.Text>
+                                            <Card.Text>Publishing Date: <Moment format="YYYY/MM/DD">
+                                                {book.pubdate}
+                                            </Moment>
+                                            </Card.Text>
+                                        </Card.Body>
+                                        {isLoadedUser && user.userRole === 'author' ?
+                                            <Card.Footer>
+                                                <Button variant="primary" className="me-4"><Link style={{ textDecoration: "none", color: "#fff" }} to={`/edit-book/${book._id}`}>Edit</Link></Button>
+                                                <Button variant="danger" onClick={() => { handleDelete(book._id) }}>Delete</Button>
+                                            </Card.Footer>
+                                            :
+                                            <>
+                                            </>
+                                        }
 
-                                </Card>
-                            </Col>
-                        )) :
+                                    </Card>
+                                </Col>
+                            )) :
 
-                            <>
-                                Loading...
-                            </>
-                    }
-                </Row>
-            </Container>
+                                <>
+                                    <p>loading...</p>
+                                </>
+                        }
+                    </Row>
+                </Container>
+            </>
         </>
     )
 }

@@ -15,10 +15,9 @@ export default function Header() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const isAuthLocation = (location.pathname === '/auth/login' || location.pathname === '/auth/register');
-
-    const userRole = user.userRole;
+    const isLoadedUser = useSelector((state) => state.auth.isLoading === 'loaded');
+    const userRole = isLoadedUser ? (user.userRole ? user.userRole : 'reader') : null;
     console.log(userRole);
-
 
     const handleLogout = () => {
         dispatch(logout());
@@ -35,17 +34,17 @@ export default function Header() {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav style={{ marginLeft: 'auto' }}>
-                        {userRole === 'reviewer' ? <Nav.Link href='reviews'>Write Review</Nav.Link> : userRole === 'author' ? <Nav.Link href='create-book'>Create Book</Nav.Link> : <></>}
+                        { userRole === 'reviewer' ? <Nav.Link href='reviews'>Write Review</Nav.Link> : userRole === 'author' ? <Nav.Link href='create-book'>Create Book</Nav.Link> : <><Nav.Link href='reviews'>Reviews</Nav.Link></>}
                         {isAuth ?
                             <>
-                                <Nav.Link href='#'>👋{user.username} [ {user.userRole} ]</Nav.Link>
+                                <Nav.Link href='#'>👋{user.username}</Nav.Link>
                                 <Button variant='warning' onClick={handleLogout}>Exit</Button>
                             </>
                             : isAuthLocation ? <Nav.Link disabled href='auth/login'>Authorization</Nav.Link>
                                 :
 
                                 <>
-                                    <Nav.Link href='reviews'>Reviews</Nav.Link>
+                                    
                                     <Nav.Link href='auth/login'>Authorization</Nav.Link>
                                 </>
                         }
