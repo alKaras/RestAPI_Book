@@ -23,6 +23,7 @@ export default function Registration() {
             username: '',
             email: '',
             password: '',
+            userRole: '',
         },
         mode: 'onChange',
     });
@@ -49,7 +50,21 @@ export default function Registration() {
                         {...register('username', { required: 'Username field is required!' })}
                     />
                 </Form.Group>
+
                 {errors.username && <div>{errors.username.message}</div>}
+                <Form.Group controlId='formRole'>
+                    <Form.Label>Your Role</Form.Label>
+                    <Form.Select
+                        aria-label="role-select"
+                        {...register('userRole', { required: true })}
+                    >
+                        <option value={''} disabled></option>
+                        <option value={'author'}>Author</option>
+                        <option value={'reader'}>Reader</option>
+                        <option value={'reviewer'}>Reviewer</option>
+                    </Form.Select>
+                </Form.Group>
+                {errors.userRole && <div>{errors.userRole.message}</div>}
                 <Form.Group controlId="formEmail">
                     <Form.Label>Email:</Form.Label>
                     <Form.Control
