@@ -49,7 +49,7 @@ export default function Registration() {
                         {...register('username', { required: 'Username field is required!' })}
                     />
                 </Form.Group>
-                {errors.username && <div>{errors.nickname.message}</div>}
+                {errors.username && <div>{errors.username.message}</div>}
                 <Form.Group controlId="formEmail">
                     <Form.Label>Email:</Form.Label>
                     <Form.Control

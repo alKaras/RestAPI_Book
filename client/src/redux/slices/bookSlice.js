@@ -11,15 +11,6 @@ export const fetchRemovedBook = createAsyncThunk('/book/delete', async (id) => {
     return data;
 })
 
-export const updateBook = createAsyncThunk('/book/edit', async (id, params, { _, rejectWithValue }) => {
-    try {
-        const { data } = await axios.put(`/book/editBook${id}`, params);
-        return data;
-    } catch (error) {
-        return rejectWithValue(error.response.message);
-    }
-})
-
 export const createBook = createAsyncThunk('book/create', async (params, { _, rejectWithValue }) => {
     try {
         const { data } = await axios.post('/book/createBook', params);
@@ -45,8 +36,10 @@ const initialState = {
         isLoading: 'loading',
         isUpdated: 'process',
         isCreated: 'process',
-        item: null
-    }
+        item: null,
+        error: null
+    },
+    
 }
 
 const bookSlice = createSlice({
@@ -79,19 +72,6 @@ const bookSlice = createSlice({
                 state.error = null
             })
             .addCase(fetchRemovedBook.rejected, (state, action) => {
-                state.books.isLoading = 'error'
-                state.error = action.payload.message
-            })
-            .addCase(updateBook.pending, (state) => {
-                state.books.isLoading = 'loading'
-                state.error = null
-            })
-            .addCase(updateBook.fulfilled, (state, action) => {
-                state.books.isLoading = 'loaded'
-                state.books.isUpdated = 'done'
-                state.error = null
-            })
-            .addCase(updateBook.rejected, (state, action) => {
                 state.books.isLoading = 'error'
                 state.error = action.payload.message
             })
