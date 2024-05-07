@@ -1,6 +1,7 @@
 import React from 'react'
 
-export const index = () => {
+export const Reviews = () => {
+    
     return (
         <div>index</div>
     )
