@@ -12,7 +12,7 @@ const userModelScheme = new mongoose.Schema(
         },
         userRole: {
             type: String,
-            default: 'user'
+            default: 'reader'
         }
     }
 )
