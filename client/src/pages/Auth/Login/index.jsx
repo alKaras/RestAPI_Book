@@ -51,7 +51,7 @@ export default function Login() {
                 <Form.Group controlId="formPass">
                     <Form.Label>Password:</Form.Label>
                     <Form.Control
-                        type="passsword"
+                        type="password"
                         name="password"
                         {...register('password', { required: 'Password is required field!' })}
                     />

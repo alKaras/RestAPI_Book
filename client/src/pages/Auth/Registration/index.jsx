@@ -60,7 +60,6 @@ export default function Registration() {
                     >
                         <option value={''} disabled></option>
                         <option value={'author'}>Author</option>
-                        <option value={'reader'}>Reader</option>
                         <option value={'reviewer'}>Reviewer</option>
                     </Form.Select>
                 </Form.Group>
@@ -77,7 +76,7 @@ export default function Registration() {
                 <Form.Group controlId="formPassword">
                     <Form.Label>Password:</Form.Label>
                     <Form.Control
-                        type="passsword"
+                        type='password'
                         name="password"
                         {...register('password', { required: 'Password field is required!' })}
                     />

@@ -5,12 +5,14 @@ import Moment from 'react-moment'
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchBooks, fetchRemovedBook } from '../redux/slices/bookSlice.js';
+import { userInfo } from '../redux/slices/authSlice.js';
 export default function Home() {
 
     const dispatch = useDispatch();
     const { books } = useSelector((state) => state.books);
     const bookIsDeleted = useSelector((state) => state.books.books.isDeleted === 'done');
     const bookIsLoading = useSelector((state) => state.books.books.isLoading === 'loading');
+    const user = useSelector(userInfo);
 
     useEffect(() => {
         dispatch(fetchBooks());
@@ -44,10 +46,16 @@ export default function Home() {
                                         </Moment>
                                         </Card.Text>
                                     </Card.Body>
-                                    <Card.Footer>
-                                        <Button variant="primary" className="me-4"><Link style={{ textDecoration: "none", color: "#fff" }} to={`/edit-book/${book._id}`}>Edit</Link></Button>
-                                        <Button variant="danger" onClick={() => { handleDelete(book._id) }}>Delete</Button>
-                                    </Card.Footer>
+                                    {user.userRole === 'author' ?
+                                        <Card.Footer>
+                                            <Button variant="primary" className="me-4"><Link style={{ textDecoration: "none", color: "#fff" }} to={`/edit-book/${book._id}`}>Edit</Link></Button>
+                                            <Button variant="danger" onClick={() => { handleDelete(book._id) }}>Delete</Button>
+                                        </Card.Footer>
+                                        :
+                                        <>
+                                        </>
+                                    }
+
                                 </Card>
                             </Col>
                         )) :
@@ -55,7 +63,6 @@ export default function Home() {
                             <>
                                 Loading...
                             </>
-
                     }
                 </Row>
             </Container>
