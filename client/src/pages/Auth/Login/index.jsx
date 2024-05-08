@@ -39,32 +39,34 @@ export default function Login() {
     return (
         <>
             <Header />
-            <Form onSubmit={handleSubmit(onSubmit)}>
-                <Form.Group controlId="formEmail">
-                    <Form.Label>Email:</Form.Label>
-                    <Form.Control type="email"
-                        name="email"
-                        {...register('email', { required: 'Email is required field!' })}
-                    />
-                </Form.Group>
-                {errors.email && <div>{errors.email.message}</div>}
-                <Form.Group controlId="formPass">
-                    <Form.Label>Password:</Form.Label>
-                    <Form.Control
-                        type="password"
-                        name="password"
-                        {...register('password', { required: 'Password is required field!' })}
-                    />
-                </Form.Group>
-                {errors.password && <div>{errors.password.message}</div>}
-
-                <Button variant="primary" type="submit">
-                    Login
-                </Button>
-                <Link style={{ marginLeft: "24px" }} to={'/auth/register'}>Register</Link>
-
-                {error && <div>{error}</div>}
-            </Form>
+            <div className='container'>
+                <Form className='form' onSubmit={handleSubmit(onSubmit)}>
+                    <Form.Group controlId="formEmail">
+                        <Form.Label>Email:</Form.Label>
+                        <Form.Control type="email"
+                            name="email"
+                            {...register('email', { required: 'Email is required field!' })}
+                        />
+                    </Form.Group>
+                    {errors.email && <div>{errors.email.message}</div>}
+                    <Form.Group controlId="formPass">
+                        <Form.Label>Password:</Form.Label>
+                        <Form.Control
+                            type="password"
+                            name="password"
+                            {...register('password', { required: 'Password is required field!' })}
+                        />
+                    </Form.Group>
+                    {errors.password && <div>{errors.password.message}</div>}
+    
+                    <Button variant="primary" type="submit">
+                        Login
+                    </Button>
+                    <Link style={{ marginLeft: "24px" }} to={'/auth/register'}>Register</Link>
+    
+                    {error && <div>{error}</div>}
+                </Form>
+            </div>
 
         </>
 

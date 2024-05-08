@@ -50,56 +50,56 @@ const bookSlice = createSlice({
         builder
             .addCase(fetchBooks.pending, (state) => {
                 state.books.isLoading = 'loading'
-                state.error = null
+                state.books.error = null
             })
             .addCase(fetchBooks.fulfilled, (state, action) => {
                 state.books.isLoading = 'loaded'
                 state.books.items = action.payload.data
-                state.error = null
+                state.books.error = null
             })
             .addCase(fetchBooks.rejected, (state, action) => {
                 state.books.isLoading = 'error'
-                state.error = action.payload.message
+                state.books.error = action.payload.message
             })
             .addCase(fetchRemovedBook.pending, (state) => {
                 state.books.isLoading = 'loading'
-                state.error = null
+                state.books.error = null
                 state.books.isDeleted = 'pending'
             })
             .addCase(fetchRemovedBook.fulfilled, (state, action) => {
                 state.books.isLoading = 'loaded'
                 state.books.isDeleted = 'done'
-                state.error = null
+                state.books.error = null
             })
             .addCase(fetchRemovedBook.rejected, (state, action) => {
                 state.books.isLoading = 'error'
-                state.error = action.payload.message
+                state.books.error = action.payload.message
             })
             .addCase(createBook.pending, (state) => {
                 state.books.isLoading = 'loading'
-                state.error = null
+                state.books.error = null
             })
             .addCase(createBook.fulfilled, (state, action) => {
                 state.books.isLoading = 'loaded'
                 state.books.isCreated = 'done'
-                state.error = null
+                state.books.error = null
             })
             .addCase(createBook.rejected, (state, action) => {
                 state.books.isLoading = 'error'
-                state.error = action.payload.message
+                state.books.error = action.payload?.message
             })
             .addCase(getBookById.pending, (state) => {
                 state.books.isLoading = 'loading'
-                state.error = null
+                state.books.error = null
             })
             .addCase(getBookById.fulfilled, (state, action) => {
                 state.books.isLoading = 'loaded'
                 state.books.item = action.payload?.data
-                state.error = null
+                state.books.error = null
             })
             .addCase(getBookById.rejected, (state, action) => {
                 state.books.isLoading = 'error'
-                state.error = action.payload.message
+                state.books.error = action.payload.message
             })
     }
 })

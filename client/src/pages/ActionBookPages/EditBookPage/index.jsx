@@ -40,10 +40,9 @@ export default function EditPage() {
     return (
         <>
             <Header />
-            <div>
+            <div className='container'>
                 <h2>Update Book</h2>
                 <Form onSubmit={handleUpdate}>
-                    {/* {errors.isbn && <div>{errors.isbn.message}</div>} */}
                     <Form.Group controlId="formTitle">
                         <Form.Label>Title:</Form.Label>
                         <Form.Control

@@ -36,7 +36,7 @@ export const getUser = createAsyncThunk('auth/getUser', async (_, { rejectWithVa
         const { data } = await axios.get('/user/getUser');
         return data;
     } catch (error) {
-        return rejectWithValue(error.response.data);
+        return rejectWithValue(error.response.message);
     }
 })
 
@@ -92,7 +92,7 @@ const authSlice = createSlice({
             })
             .addCase(getUser.rejected, (state, action) => {
                 state.isLoading = 'error'
-                state.error = action.payload.message
+                state.error = action.payload?.message
             })
 
     }
