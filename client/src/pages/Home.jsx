@@ -14,6 +14,7 @@ export default function Home() {
     const bookIsLoading = useSelector((state) => state.books.books.isLoading === 'loading');
     const user = useSelector(userInfo);
     const isLoadedUser = useSelector((state) => state.auth.isLoading === 'loaded');
+    const userRole = isLoadedUser ? (user.userRole ? user.userRole : 'reader') : null;
     console.log(user);
 
     useEffect(() => {
@@ -49,14 +50,24 @@ export default function Home() {
                                             </Moment>
                                             </Card.Text>
                                         </Card.Body>
-                                        {isLoadedUser && user.userRole === 'author' ?
+                                        {isLoadedUser && userRole === 'author' ?
                                             <Card.Footer>
                                                 <Button variant="primary" className="me-4"><Link style={{ textDecoration: "none", color: "#fff" }} to={`/edit-book/${book._id}`}>Edit</Link></Button>
                                                 <Button variant="danger" onClick={() => { handleDelete(book._id) }}>Delete</Button>
                                             </Card.Footer>
-                                            :
-                                            <>
-                                            </>
+                                            : userRole === 'reviewer' ?
+                                                <>
+                                                    <Card.Footer>
+                                                        <Button variant="primary" className="me-4">
+                                                            <Link style={{ textDecoration: "none", color: "#fff" }} to={`/write-review/${book._id}`}>
+                                                                Write Review
+                                                            </Link>
+                                                        </Button>
+                                                    </Card.Footer>
+                                                </>
+                                                :
+                                                <>
+                                                </>
                                         }
 
                                     </Card>

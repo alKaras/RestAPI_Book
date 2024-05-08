@@ -7,6 +7,8 @@ import Registration from './pages/Auth/Registration';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getUser } from './redux/slices/authSlice.js';
+import { CreateReview } from './pages/Reviews/CreateReview.jsx';
+import { Reviews } from './pages/Reviews/index.jsx';
 
 function App() {
   const dispatch = useDispatch();
@@ -23,6 +25,8 @@ function App() {
         <Route path='/edit-book/:id' element={<EditPage />} />
         <Route path='/auth/login' element={<Login />} />
         <Route path='/auth/register' element={<Registration />} />
+        <Route path='/write-review/:id' element={<CreateReview />} />
+        <Route path='/reviews' element={<Reviews />} />
       </Routes>
     </div>
   );

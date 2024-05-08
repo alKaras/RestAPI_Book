@@ -12,7 +12,7 @@ const createReview = async (req, res) => {
     })
 
     await review.save();
-    await review.populate('reviewer', 'username');
+    await review.populate('bookId', 'title author');
 
     res.status(200).json(review);
 }
