@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import Home from './pages/Home';
-import CreateBookPage from './pages/createBookPage.jsx'
-import EditPage from './pages/EditPage.jsx';
+import CreateBookPage from './pages/ActionBookPages/CreateBookPage'
+import EditPage from './pages/ActionBookPages/EditBookPage/';
 import Login from './pages/Auth/Login';
 import Registration from './pages/Auth/Registration';
 import { useDispatch } from 'react-redux';

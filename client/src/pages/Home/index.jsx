@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
-import Header from '../components/Header/Header.jsx'
+import Header from '../../components/Header/Header.jsx'
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import Moment from 'react-moment'
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchBooks, fetchRemovedBook } from '../redux/slices/bookSlice.js';
-import { userInfo } from '../redux/slices/authSlice.js';
+import { fetchBooks, fetchRemovedBook } from '../../redux/slices/bookSlice.js';
+import { userInfo } from '../../redux/slices/authSlice.js';
 export default function Home() {
 
     const dispatch = useDispatch();

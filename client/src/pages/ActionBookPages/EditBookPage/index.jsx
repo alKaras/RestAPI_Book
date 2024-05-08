@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import axios from '../axios.js'
+import axios from '../../../axios.js'
 import { useNavigate, useParams } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
-import Header from '../components/Header/Header.jsx';
+import Header from '../../../components/Header/Header.jsx';
 
 export default function EditPage() {
     const navigate = useNavigate();
