@@ -18,16 +18,18 @@ function App() {
   }, [dispatch]);
     
   return (
-    <div className="container">
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/create-book' element={<CreateBookPage />} />
-        <Route path='/edit-book/:id' element={<EditPage />} />
-        <Route path='/auth/login' element={<Login />} />
-        <Route path='/auth/register' element={<Registration />} />
-        <Route path='/write-review/:id' element={<CreateReview />} />
-        <Route path='/reviews' element={<Reviews />} />
-      </Routes>
+    <div className='wrapper'>
+      <div className="container">
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/create-book' element={<CreateBookPage />} />
+          <Route path='/edit-book/:id' element={<EditPage />} />
+          <Route path='/auth/login' element={<Login />} />
+          <Route path='/auth/register' element={<Registration />} />
+          <Route path='/write-review/:id' element={<CreateReview />} />
+          <Route path='/reviews/:id' element={<Reviews />} />
+        </Routes>
+      </div>
     </div>
   );
 }

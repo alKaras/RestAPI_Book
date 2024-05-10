@@ -1,18 +1,18 @@
 const Review = require('../models/reviewModel');
 
 const createReview = async (req, res) => {
-    const { bookId } = req.params.id;
     const { body } = req.body;
     const user = req.user;
 
     const review = new Review({
         body: body,
-        bookId: bookId,
+        bookId: req.params.id,
         reviewer: user
     })
 
     await review.save();
-    await review.populate('bookId', 'title author');
+    await review.populate('bookId', 'title');
+    await review.populate('bookId', 'author');
 
     res.status(200).json(review);
 }

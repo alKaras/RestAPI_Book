@@ -82,9 +82,20 @@ export default function Home() {
 
                                                     </Card.Footer>
                                                 </>
-                                                :
-                                                <>
-                                                </>
+                                                : !isLoadedUser ?
+                                                    <>
+                                                        <Card.Footer className={homeStyle.footer}>
+                                                            <div className={homeStyle['footer-actions']}>
+                                                                <Button title='check reviews' style={{ marginLeft: '15px' }} variant="info">
+                                                                    <Link style={{ textDecoration: 'none', color: '#fff', fontWeight: 'bold' }} to={`/reviews/${book._id}`}>Reviews <i class="fa-solid fa-magnifying-glass"></i></Link>
+                                                                </Button>
+                                                            </div>
+                                                            <Card.Text style={{ color: 'gray' }}><strong style={{ fontSize: '14px' }}>Added by:</strong> {book.addedBy.username}</Card.Text>
+                                                        </Card.Footer>
+                                                    </>
+                                                    :
+                                                    <>
+                                                    </>
                                         }
 
                                     </Card>

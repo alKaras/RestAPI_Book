@@ -48,3 +48,11 @@ code {
 h2 {
   margin-top: 25px;
 }
+
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
