@@ -10,7 +10,7 @@ export default function EditPage() {
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
     const [publisher, setPublisher] = useState('');
-    const [numPages, setNumPages] = useState('');
+    const [numPages, setNumPages] = useState(0);
     const [bookIsUpdated, setIsUpdated] = useState(false);
     console.log(bookIsUpdated);
     useEffect(() => {
@@ -40,9 +40,9 @@ export default function EditPage() {
     return (
         <>
             <Header />
-            <div className='container'>
+            <div className='form-create container'>
                 <h2>Update Book</h2>
-                <Form onSubmit={handleUpdate}>
+                <Form className='form' onSubmit={handleUpdate}>
                     <Form.Group controlId="formTitle">
                         <Form.Label>Title:</Form.Label>
                         <Form.Control
@@ -67,11 +67,11 @@ export default function EditPage() {
                             onChange={(e) => setPublisher(e.target.value)}
                         />
                     </Form.Group>
-                    <Form.Group controlId="formNumOfPage">
+                    <Form.Group controlId="formNumPages">
                         <Form.Label>Number of Pages:</Form.Label>
                         <Form.Control
                             type="number"
-                            name="numOfPage"
+                            name="numPages"
                             onChange={(e) => setNumPages(e.target.value)}
                         />
                     </Form.Group>

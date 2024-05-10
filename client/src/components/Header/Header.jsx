@@ -35,11 +35,11 @@ export default function Header() {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav style={{ marginLeft: 'auto' }}>
-                        {userRole === 'author' ? <Nav.Link href='create-book'>Create Book</Nav.Link> : <><Nav.Link href='reviews'>Reviews</Nav.Link></>}
+                        {userRole === 'author' ? <Nav.Link href='create-book'>Create Book</Nav.Link> : <></>}
                         {isAuth ?
                             <>
                                 <Nav.Link href='#'>👋{user.username}</Nav.Link>
-                                <Button variant='warning' onClick={handleLogout}>Exit</Button>
+                                <Button style={{ color: "#fff" }} variant='warning' onClick={handleLogout}><i class="fa-solid fa-right-from-bracket"></i></Button>
                             </>
                             : isAuthLocation ? <Nav.Link disabled href='auth/login'>Authorization</Nav.Link>
                                 :

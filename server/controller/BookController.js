@@ -46,12 +46,12 @@ const getBook = async (req, res) => {
 const editBook = async (req, res) => {
     try {
         const bookID = req.params.bookID.toString();
-        const { title, author, publisher, numOfPage } = req.body;
+        const { title, author, publisher, numPages } = req.body;
         const updatedBook = await Book.findByIdAndUpdate(bookID, {
             title: title,
             author: author,
             publisher: publisher,
-            numOfPage: numOfPage
+            numOfPage: numPages
         });
         if (res.status(200)) {
             return res.json({ success_message: "Book is up to date!", data: updatedBook })
