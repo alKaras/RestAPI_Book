@@ -19,6 +19,11 @@ const bookModelScheme = new mongoose.Schema (
         },
         numOfPage: {
             type: Number
+        },
+        addedBy: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Users',
+            require: true,
         }
     }
 )

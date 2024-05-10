@@ -16,6 +16,7 @@ export default function Home() {
     const isLoadedUser = useSelector((state) => state.auth.isLoading === 'loaded');
     const userRole = isLoadedUser ? (user.userRole ? user.userRole : 'reader') : null;
     console.log(user);
+    console.log(books);
 
     useEffect(() => {
         dispatch(fetchBooks());
@@ -45,15 +46,20 @@ export default function Home() {
                                             <Card.Text>Author: {book.author}</Card.Text>
                                             <Card.Text>Publisher: {book.publisher}</Card.Text>
                                             <Card.Text>Number of Pages: {book.numOfPage}</Card.Text>
+                                            
                                             <Card.Text>Publishing Date: <Moment format="YYYY/MM/DD">
                                                 {book.pubdate}
                                             </Moment>
                                             </Card.Text>
+                                            <Card.Text>Added by: {book.addedBy.username}</Card.Text>
                                         </Card.Body>
-                                        {isLoadedUser && userRole === 'author' ?
+                                        {isLoadedUser && (userRole === 'author' && user._id === book.addedBy._id) ?
                                             <Card.Footer>
                                                 <Button variant="primary" className="me-4"><Link style={{ textDecoration: "none", color: "#fff" }} to={`/edit-book/${book._id}`}>Edit</Link></Button>
                                                 <Button variant="danger" onClick={() => { handleDelete(book._id) }}>Delete</Button>
+                                                <Button style={{ marginLeft: '15px' }} variant="info">
+                                                    <Link style={{ textDecoration: 'none', color: '#000' }} to={`/reviews/${book._id}`}>Check reviews</Link>
+                                                </Button>
                                             </Card.Footer>
                                             : userRole === 'reviewer' ?
                                                 <>
@@ -62,6 +68,9 @@ export default function Home() {
                                                             <Link style={{ textDecoration: "none", color: "#fff" }} to={`/write-review/${book._id}`}>
                                                                 Write Review
                                                             </Link>
+                                                        </Button>
+                                                        <Button style={{ marginLeft: '15px' }} variant="info">
+                                                            <Link style={{ textDecoration: 'none', color: '#000' }} to={`/reviews/${book._id}`}>Check reviews</Link>
                                                         </Button>
                                                     </Card.Footer>
                                                 </>

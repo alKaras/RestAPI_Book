@@ -11,6 +11,7 @@ const createBook = async (req, res) => {
             pubdate: pubdate,
             publisher: publisher,
             numOfPage: numOfPage,
+            addedBy: req.user
         })
 
         if (res.status(200)) {
@@ -23,7 +24,7 @@ const createBook = async (req, res) => {
 
 const getBooks = async (req, res) => {
     try {
-        const books = await Book.find({});
+        const books = await Book.find().populate('addedBy', 'username').exec();
         if (res.status(200)) {
             return res.json({ data: books });
         }
@@ -34,7 +35,7 @@ const getBooks = async (req, res) => {
 
 const getBook = async (req, res) => {
     const bookID = req.params.bookID.toString();
-    const book = await Book.findById(bookID);
+    const book = await Book.findById(bookID).populate('addedBy', 'username');
 
     if (!book) {
         return res.status(404).json({ message: "Book not found" });

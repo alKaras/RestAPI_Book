@@ -35,6 +35,15 @@ code {
   margin-bottom: 15px;
 }
 
+.flex-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.button-row {
+  margin-top: 15px;
+}
 
 h2 {
   margin-top: 25px;

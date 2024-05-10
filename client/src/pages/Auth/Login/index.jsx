@@ -59,10 +59,12 @@ export default function Login() {
                     </Form.Group>
                     {errors.password && <div>{errors.password.message}</div>}
     
-                    <Button variant="primary" type="submit">
-                        Login
-                    </Button>
-                    <Link style={{ marginLeft: "24px" }} to={'/auth/register'}>Register</Link>
+                    <div className='flex-container button-row' >
+                        <Button style={{margin: '0'}} variant="primary" type="submit">
+                            Login
+                        </Button>
+                        <Link style={{ marginLeft: "24px" }} to={'/auth/register'}>Register</Link>
+                    </div>
     
                     {error && <div>{error}</div>}
                 </Form>
