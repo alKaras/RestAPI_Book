@@ -27,8 +27,8 @@ export default function Filter({ applyFilters }) {
         }, 2000)
     }
     return (
-        <Accordion className={`container ${filterStyle.root}`}>
-            <Accordion.Header className={filterStyle['filter-header']}>
+        <Accordion className={`container ${filterStyle.root} filter`}>
+            <Accordion.Header className={`${filterStyle['filter-header']}`}>
                 <span>Filter</span>
             </Accordion.Header>
             <Accordion.Body as={'div'} className={filterStyle['filter-body']}>

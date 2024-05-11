@@ -75,18 +75,19 @@ export const Reviews = () => {
                         return (
                             <Accordion style={{ marginBottom: '15px', marginTop: '25px' }} key={index}>
                                 <Accordion.Item eventKey='0'>
-                                    <Accordion.Header style={{ fontWeight: 'bold', marginTop: '0', display: 'flex', alignItems: 'center' }}>
+                                    <Accordion.Header className='reviews' style={{ fontWeight: 'bold', marginTop: '0', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                                         <span style={{ marginRight: 'auto' }}><strong>Written by:</strong> {obj.reviewer.username} </span>
-                                        <Moment format="DD/MM/YYYY HH:mm:ss" style={{ color: 'gray', marginLeft: '800px' }}>
+                                        <Moment format="DD/MM/YYYY HH:mm:ss" style={{ color: 'gray', marginLeft: 'auto' }}>
                                             {obj.createdAt}
                                         </Moment>
-                                    </Accordion.Header>
-                                    <Accordion.Body>
                                         {isLoadedUser && (user._id === obj.bookId.addedBy || user._id === obj.reviewer._id) ?
-                                            <button className='btn btn-danger' onClick={() => handleDelete(obj._id)} style={{ marginTop: '10px' }}><i class="fa-solid fa-eraser"></i></button>
+                                            <button className='btn btn-danger' onClick={() => handleDelete(obj._id)} style={{ marginLeft: '15px' }}><i class="fa-solid fa-eraser"></i></button>
                                             :
                                             <></>
                                         }
+                                    </Accordion.Header>
+                                    <Accordion.Body>
+                                        
                                         <div><strong>Review:</strong> <br /> {obj.body}</div>
 
                                     </Accordion.Body>
