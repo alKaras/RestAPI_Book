@@ -15,7 +15,7 @@ export default function Header() {
     const dispatch = useDispatch();
     const user = useSelector(userInfo);
     const isAuth = useSelector(selectIsLogged)
-    const isAuthLocation = (location.pathname === '/auth/login' || location.pathname === '/auth/register');
+    const isAuthLocation = (location.pathname === '/auth/login' || location.pathname === '/auth/register' || location.pathname !== '/');
     const isLoadedUser = useSelector((state) => state.auth.isLoading === 'loaded');
     const userRole = isLoadedUser ? (user.userRole ? user.userRole : 'reader') : '';
 
@@ -38,11 +38,10 @@ export default function Header() {
                                 <Nav.Link href='#'>👋{user.username}</Nav.Link>
                                 <Button style={{ color: "#fff" }} variant='warning' onClick={handleLogout}><i class="fa-solid fa-right-from-bracket"></i></Button>
                             </>
-                            : isAuthLocation ? <Nav.Link disabled href='auth/login'>Authorization</Nav.Link>
+                            : isAuthLocation ? <></>
                                 :
 
                                 <>
-
                                     <Nav.Link href='auth/login'>Authorization</Nav.Link>
                                 </>
                         }

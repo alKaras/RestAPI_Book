@@ -3,7 +3,7 @@ const Book = require('../models/bookModel');
 const createReview = async (req, res) => {
     const { body } = req.body;
     const user = req.user;
-    const bookId = await Book.findOne({alias: req.params.alias}).select('_id')
+    const bookId = await Book.findOne({ alias: req.params.alias }).select('_id')
     const review = new Review({
         body: body,
         bookId: bookId._id.toString(),
@@ -28,16 +28,26 @@ const getAllReview = async (req, res) => {
 
 const getReviewByBookId = async (req, res) => {
     try {
-        const bookId = await Book.findOne({alias: req.params.alias}).select('_id')
-        const review = await Review.find({ bookId: bookId._id.toString()}).populate('reviewer', 'username').populate('bookId', 'title author')
+        const bookId = await Book.findOne({ alias: req.params.alias }).select('_id')
+        const review = await Review.find({ bookId: bookId._id.toString() }).populate('reviewer', 'username').populate('bookId', 'title author addedBy');
         return res.status(200).json({ data: review })
     } catch (error) {
         return res.status(500).json({ message: "Couldn\'t fetch book by id" })
     }
 }
 
+const deleteReview = async (req, res) => {
+    try {
+        const reviewId = req.params.id;
+        const deletedReview = await Review.findByIdAndDelete(reviewId);
+    } catch (error) {
+        return res.status(500).json({ message: 'Error deleting review' });
+    }
+}
+
 module.exports = {
     createReview,
     getAllReview,
-    getReviewByBookId
+    getReviewByBookId,
+    deleteReview
 }
