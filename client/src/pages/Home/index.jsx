@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import Header from '../../components/Header/Header.jsx'
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import Moment from 'react-moment'
@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchBooks, fetchRemovedBook } from '../../redux/slices/bookSlice.js';
 import { userInfo } from '../../redux/slices/authSlice.js';
 import Filter from '../../components/Filter/index.jsx';
-import axios from '../../axios.js'
 export default function Home() {
 
     const dispatch = useDispatch();

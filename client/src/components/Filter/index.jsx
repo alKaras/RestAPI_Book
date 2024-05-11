@@ -10,8 +10,6 @@ export default function Filter({ applyFilters }) {
         pubdate: ''
     });
 
-    const [isApplied, setIsApplied] = useState(false);
-
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFilters({ ...filters, [name]: value })
