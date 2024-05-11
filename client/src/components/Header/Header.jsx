@@ -18,7 +18,6 @@ export default function Header() {
     const isAuthLocation = (location.pathname === '/auth/login' || location.pathname === '/auth/register');
     const isLoadedUser = useSelector((state) => state.auth.isLoading === 'loaded');
     const userRole = isLoadedUser ? (user.userRole ? user.userRole : 'reader') : '';
-    console.log(userRole);
 
     const handleLogout = () => {
         dispatch(logout());

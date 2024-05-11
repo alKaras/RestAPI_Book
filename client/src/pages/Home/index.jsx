@@ -38,8 +38,8 @@ export default function Home() {
                 <Container className={`mt-4 ${homeStyle.root}`}>
                     <Row>
                         {
-                            !bookIsLoading ? (books.items).map(book => (
-                                <Col key={book.id} md={4} className="mb-4">
+                            !bookIsLoading ? (books.items).map((book, index) => (
+                                <Col key={index} md={4} className="mb-4">
                                     <Card className={homeStyle.card}>
                                         <Card.Body>
                                             <Card.Title>{book.title}</Card.Title>

@@ -5,6 +5,6 @@ const reviewController = require('../controller/reviewController');
 const checkAuth = require('../middleware/auth');
 
 router.post(`/create/:id`, checkAuth, reviewController.createReview);
-router.get('/fetch', reviewController.getAllReview);
+router.get('/fetch-review/:id', reviewController.getReviewByBookId);
 
 module.exports = router;

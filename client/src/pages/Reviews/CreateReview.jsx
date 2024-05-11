@@ -43,7 +43,7 @@ export const CreateReview = () => {
                         <Form.Label>Book Review</Form.Label>
                         <Form.Control
                             as="textarea"
-                            rows={3}
+                            rows={10}
                             style={{ resize: 'none' }}
                             onChange={(e) => setBody(e.target.value)}
                         />

@@ -5,13 +5,17 @@ const reviewModelScheme = new mongoose.Schema (
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Books',
         },
-        reviewer: [{
+        reviewer: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Users',
-        }],
+        },
         body: {
             type: String,
         }
+    },
+    {
+        timestamps: true,
+        collection: 'reviews',
     }
 )
 
