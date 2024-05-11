@@ -24,10 +24,18 @@ const createBook = async (req, res) => {
 
 const getBooks = async (req, res) => {
     try {
-        const books = await Book.find().populate('addedBy', 'username').exec();
-        if (res.status(200)) {
-            return res.json({ data: books });
+        // const books = await Book.find().populate('addedBy', 'username').exec();
+        const { author, title, publisher, pubdate } = req.query;
+        const query = {};
+
+        if (author) query.author = author;
+        if (title) query.title = title;
+        if (publisher) query.publisher = publisher;
+        if (pubdate) {
+            query.pubdate = { $gte: new Date(pubdate) }
         }
+        const filteredBooks = await Book.find(query).populate('addedBy', 'username').exec();;
+        return res.status(200).json({ data: filteredBooks });
     } catch (error) {
         return res.status(500).json({ message: "Couldn't fetch all books" })
     }
@@ -36,6 +44,8 @@ const getBooks = async (req, res) => {
 const getBook = async (req, res) => {
     const bookID = req.params.bookID.toString();
     const book = await Book.findById(bookID).populate('addedBy', 'username');
+
+
 
     if (!book) {
         return res.status(404).json({ message: "Book not found" });
@@ -71,10 +81,27 @@ const deleteBook = async (req, res) => {
     }
 }
 
+const fetchByFilter = async (req, res) => {
+    try {
+        const { author, title, publisher, pubdate } = req.query;
+        const query = {};
+        if (author) query.author = author;
+        if (title) query.title = title;
+        if (publisher) query.publisher = publisher;
+        if (pubdate) query.pubdate = pubdate;
+
+        const filteredBooks = await Book.find(query);
+        return res.status(200).json(filteredBooks);
+    } catch (error) {
+        return res.status(500).json({ message: err.message })
+    }
+}
+
 module.exports = {
     createBook,
     getBooks,
     editBook,
     deleteBook,
-    getBook
+    getBook,
+    fetchByFilter
 }

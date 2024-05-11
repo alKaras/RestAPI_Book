@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from '../../components/Header/Header.jsx'
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import Moment from 'react-moment'
@@ -7,10 +7,13 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchBooks, fetchRemovedBook } from '../../redux/slices/bookSlice.js';
 import { userInfo } from '../../redux/slices/authSlice.js';
+import Filter from '../../components/Filter/index.jsx';
+import axios from '../../axios.js'
 export default function Home() {
 
     const dispatch = useDispatch();
     const { books } = useSelector((state) => state.books);
+
     const bookIsDeleted = useSelector((state) => state.books.books.isDeleted === 'done');
     const bookIsLoading = useSelector((state) => state.books.books.isLoading === 'loading');
     const user = useSelector(userInfo);
@@ -20,10 +23,10 @@ export default function Home() {
     console.log(books);
 
     useEffect(() => {
-        dispatch(fetchBooks());
+        dispatch(fetchBooks({}));
 
         if (bookIsDeleted) {
-            dispatch(fetchBooks());
+            dispatch(fetchBooks({}));
         }
     }, [dispatch, bookIsDeleted]);
 
@@ -31,10 +34,15 @@ export default function Home() {
         dispatch(fetchRemovedBook(id));
     }
 
+    const applyFilters = (filters) => {
+        dispatch(fetchBooks(filters))
+    }
+
     return (
         <>
             <>
-                < Header />
+                <Header />
+                <Filter applyFilters={applyFilters} />
                 <Container className={`mt-4 ${homeStyle.root}`}>
                     <Row>
                         {

@@ -1,9 +1,14 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from '../../axios'
 
-export const fetchBooks = createAsyncThunk('/book/fetch', async () => {
-    const { data } = await axios.get('/book/getBooks');
-    return data;
+export const fetchBooks = createAsyncThunk('/book/fetch', async (filterParams, { rejectWithValue }) => {
+    try {
+        const { data } = await axios.get('/book/getBooks', { params: filterParams });
+        return data;
+    } catch (error) {
+        return rejectWithValue(error.response.message)
+    }
+
 })
 
 export const fetchRemovedBook = createAsyncThunk('/book/delete', async (id) => {
@@ -39,7 +44,7 @@ const initialState = {
         item: null,
         error: null
     },
-    
+
 }
 
 const bookSlice = createSlice({
