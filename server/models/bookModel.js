@@ -7,6 +7,9 @@ const bookModelScheme = new mongoose.Schema (
         title: {
             type: String,
         },
+        alias: {
+            type: String,
+        },
         author: {
             type: String,
         },

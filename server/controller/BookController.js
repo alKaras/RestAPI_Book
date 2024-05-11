@@ -1,5 +1,7 @@
 const Book = require('../models/bookModel');
 
+const slugMaker = require('../service/slugMaker')
+
 const createBook = async (req, res) => {
     const { isbn, title, author, pubdate, publisher, numOfPage } = req.body;
 
@@ -7,6 +9,7 @@ const createBook = async (req, res) => {
         const book = await Book.create({
             isbn: isbn,
             title: title,
+            alias: slugMaker.createSlug(title),
             author: author,
             pubdate: pubdate,
             publisher: publisher,
@@ -24,7 +27,6 @@ const createBook = async (req, res) => {
 
 const getBooks = async (req, res) => {
     try {
-        // const books = await Book.find().populate('addedBy', 'username').exec();
         const { author, title, publisher, pubdate } = req.query;
         const query = {};
 
@@ -55,14 +57,15 @@ const getBook = async (req, res) => {
 
 const editBook = async (req, res) => {
     try {
-        const bookID = req.params.bookID.toString();
+        const alias = req.params.alias;
         const { title, author, publisher, numPages } = req.body;
-        const updatedBook = await Book.findByIdAndUpdate(bookID, {
+        const updatedBook = await Book.findOneAndUpdate({ alias: alias }, {
             title: title,
             author: author,
             publisher: publisher,
             numOfPage: numPages
         });
+
         if (res.status(200)) {
             return res.json({ success_message: "Book is up to date!", data: updatedBook })
         }
@@ -81,27 +84,10 @@ const deleteBook = async (req, res) => {
     }
 }
 
-const fetchByFilter = async (req, res) => {
-    try {
-        const { author, title, publisher, pubdate } = req.query;
-        const query = {};
-        if (author) query.author = author;
-        if (title) query.title = title;
-        if (publisher) query.publisher = publisher;
-        if (pubdate) query.pubdate = pubdate;
-
-        const filteredBooks = await Book.find(query);
-        return res.status(200).json(filteredBooks);
-    } catch (error) {
-        return res.status(500).json({ message: err.message })
-    }
-}
-
 module.exports = {
     createBook,
     getBooks,
     editBook,
     deleteBook,
-    getBook,
-    fetchByFilter
+    getBook
 }

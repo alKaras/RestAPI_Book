@@ -6,7 +6,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 export const CreateReview = () => {
     const navigate = useNavigate();
-    const { id } = useParams();
+    const { alias } = useParams();
     const [body, setBody] = useState('');
     const [isSent, setIsSent] = useState(false);
 
@@ -20,7 +20,7 @@ export const CreateReview = () => {
         e.preventDefault();
 
         try {
-            await axios.post(`/review/create/${id}`, { body }).then(() => {
+            await axios.post(`/review/create/${alias}`, { body }).then(() => {
                 setIsSent(true);
                 alert('Review is sent!');
             }).catch((error) => {

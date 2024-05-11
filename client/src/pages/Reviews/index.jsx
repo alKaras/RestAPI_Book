@@ -7,12 +7,12 @@ import Moment from 'react-moment';
 
 export const Reviews = () => {
 
-    const { id } = useParams();
+    const { alias } = useParams();
     const [data, setData] = useState([]);
     const [isLoaded, setIsLoaded] = useState(false);
     const fetchReviews = async () => {
         try {
-            await axios.get(`/review/fetch-review/${id}`).then((res) => {
+            await axios.get(`/review/fetch-review/${alias}`).then((res) => {
                 setIsLoaded(true);
                 if ((res.data.data).length === 0) {
                     setData([]);

@@ -23,11 +23,11 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/create-book' element={<CreateBookPage />} />
-          <Route path='/edit-book/:id' element={<EditPage />} />
+          <Route path='/edit-book/:alias' element={<EditPage />} />
           <Route path='/auth/login' element={<Login />} />
           <Route path='/auth/register' element={<Registration />} />
-          <Route path='/write-review/:id' element={<CreateReview />} />
-          <Route path='/reviews/:id' element={<Reviews />} />
+          <Route path='/write-review/:alias' element={<CreateReview />} />
+          <Route path='/reviews/:alias' element={<Reviews />} />
         </Routes>
       </div>
     </div>

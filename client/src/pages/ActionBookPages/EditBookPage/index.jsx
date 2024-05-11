@@ -6,7 +6,7 @@ import Header from '../../../components/Header/Header.jsx';
 
 export default function EditPage() {
     const navigate = useNavigate();
-    const { id } = useParams();
+    const { alias } = useParams();
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
     const [publisher, setPublisher] = useState('');
@@ -24,7 +24,7 @@ export default function EditPage() {
         e.preventDefault();
 
         try {
-            await axios.put(`/book/editBook/${id}`, { title, author, publisher, numPages }).then(() => {
+            await axios.put(`/book/editBook/${alias}`, { title, author, publisher, numPages }).then(() => {
                 setIsUpdated(true);
                 alert('Book is up to date!');
             }).catch((e) => {

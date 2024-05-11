@@ -25,9 +25,9 @@ export const createBook = createAsyncThunk('book/create', async (params, { _, re
     }
 })
 
-export const getBookById = createAsyncThunk('book/getById', async (id, { rejectWithValue }) => {
+export const getBookByAlias = createAsyncThunk('book/getByAlias', async (alias, { rejectWithValue }) => {
     try {
-        const { data } = await axios.get(`/book/getBook/${id}`);
+        const { data } = await axios.get(`/book/getBook/${alias}`);
         return data;
     } catch (error) {
         return rejectWithValue(error.response.message);
@@ -93,16 +93,16 @@ const bookSlice = createSlice({
                 state.books.isLoading = 'error'
                 state.books.error = action.payload?.message
             })
-            .addCase(getBookById.pending, (state) => {
+            .addCase(getBookByAlias.pending, (state) => {
                 state.books.isLoading = 'loading'
                 state.books.error = null
             })
-            .addCase(getBookById.fulfilled, (state, action) => {
+            .addCase(getBookByAlias.fulfilled, (state, action) => {
                 state.books.isLoading = 'loaded'
                 state.books.item = action.payload?.data
                 state.books.error = null
             })
-            .addCase(getBookById.rejected, (state, action) => {
+            .addCase(getBookByAlias.rejected, (state, action) => {
                 state.books.isLoading = 'error'
                 state.books.error = action.payload.message
             })
