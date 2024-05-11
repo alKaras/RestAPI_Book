@@ -18,7 +18,7 @@ export default function Home() {
     const bookIsLoading = useSelector((state) => state.books.books.isLoading === 'loading');
     const user = useSelector(userInfo);
     const isLoadedUser = useSelector((state) => state.auth.isLoading === 'loaded');
-    const userRole = isLoadedUser ? (user.userRole ? user.userRole : 'reader') : null;
+    const userRole = isLoadedUser ? (user.userRole ? user.userRole : 'reader') : '';
     console.log(user);
     console.log(books);
 
