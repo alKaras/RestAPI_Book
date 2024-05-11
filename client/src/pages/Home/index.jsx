@@ -48,7 +48,7 @@ export default function Home() {
                                             <Card.Text><strong>Publisher:</strong> {book.publisher}</Card.Text>
                                             <Card.Text><strong>Number of Pages:</strong> {book.numOfPage}</Card.Text>
 
-                                            <Card.Text><strong>Publishing Date:</strong> <Moment format="YYYY/MM/DD">
+                                            <Card.Text><strong>Publishing Date:</strong> <Moment format="DD/MM/YYYY">
                                                 {book.pubdate}
                                             </Moment>
                                             </Card.Text>

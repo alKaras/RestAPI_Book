@@ -25,8 +25,6 @@ export default function Header() {
         navigate('/');
     }
 
-
-
     return (
         <Navbar expand="lg" className={`${headerStyle.root}`}>
             <Container>

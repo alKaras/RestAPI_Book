@@ -47,13 +47,11 @@ export const Reviews = () => {
                         return (
                             <Accordion style={{ marginBottom: '15px', marginTop: '25px' }} key={index}>
                                 <Accordion.Item eventKey='0'>
-                                    <Accordion.Header style={{ fontWeight: 'bold', marginTop: '0' }}>
-                                        <div>
-                                            Written by:  {obj.reviewer.username}
-                                            <Moment format="YYYY/MM/DD">
-
-                                            </Moment>
-                                        </div>
+                                    <Accordion.Header style={{ fontWeight: 'bold', marginTop: '0', display: 'flex', alignItems: 'center' }}>
+                                        <span style={{ marginRight: 'auto' }}><strong>Written by:</strong> {obj.reviewer.username} </span>
+                                        <Moment  format="DD/MM/YYYY HH:mm:ss" style={{color: 'gray', marginLeft: '800px'}}>
+                                            {obj.createdAt}
+                                        </Moment>
                                     </Accordion.Header>
                                     <Accordion.Body>
                                         <div><strong>Review:</strong> <br /> {obj.body}</div>
@@ -64,7 +62,7 @@ export const Reviews = () => {
                     })
                         :
                         <>
-                            <div style={{textAlign: 'center', fontWeight: 'bold'}}>
+                            <div style={{ textAlign: 'center', fontWeight: 'bold' }}>
                                 No reviews for this book yet
                             </div>
                         </>
