@@ -1,8 +1,12 @@
 const express = require('express')
 const cors = require('cors')
 const mongoose = require('mongoose')
-
 require('dotenv').config()
+mongoose.connect(process.env.DB_URL)
+    .then(() => console.log('Connected successfuly'))
+    .catch(() => console.log('Couldn`t connect. Error'));
+
+
 
 const PORT = process.env.APP_PORT;
 const bookRouter = require('./routers/BookRouter');
@@ -18,9 +22,6 @@ app.listen(PORT, () => {
     console.log(`Server is started successfuly on port ${PORT}`);
 })
 
-mongoose.connect(process.env.DB_URL)
-    .then(() => console.log('Connected successfuly'))
-    .catch(() => console.log('Couldn`t connect. Error'));
 
 
 

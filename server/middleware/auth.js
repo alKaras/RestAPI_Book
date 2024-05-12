@@ -17,9 +17,5 @@ module.exports = async (req, res, next) => {
             });
         }
 
-    } else {
-        // return res.status(403).json({
-        //     message: "No access at all",
-        // })
     }
 }

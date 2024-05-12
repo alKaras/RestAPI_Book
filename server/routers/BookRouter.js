@@ -7,5 +7,4 @@ router.post('/createBook', checkAuth, bookController.createBook);
 router.get('/getBooks', bookController.getBooks);
 router.put('/editBook/:alias', bookController.editBook);
 router.delete('/deleteBook/:bookID', bookController.deleteBook);
-router.get('/getBook/:bookID', bookController.getBook);
 module.exports = router;

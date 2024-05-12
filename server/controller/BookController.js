@@ -43,18 +43,6 @@ const getBooks = async (req, res) => {
     }
 }
 
-const getBook = async (req, res) => {
-    const bookID = req.params.bookID.toString();
-    const book = await Book.findById(bookID).populate('addedBy', 'username');
-
-
-
-    if (!book) {
-        return res.status(404).json({ message: "Book not found" });
-    }
-    return res.status(200).json({ data: book })
-}
-
 const editBook = async (req, res) => {
     try {
         const alias = req.params.alias;
@@ -88,6 +76,5 @@ module.exports = {
     createBook,
     getBooks,
     editBook,
-    deleteBook,
-    getBook
+    deleteBook
 }

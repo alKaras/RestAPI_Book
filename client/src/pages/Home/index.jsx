@@ -72,37 +72,48 @@ export default function Home() {
                                                 </div>
                                                 <Card.Text style={{ color: 'gray' }}><strong style={{ fontSize: '14px' }}>Added by:</strong> {book.addedBy.username}</Card.Text>
                                             </Card.Footer>
-                                            : userRole === 'reviewer' ?
+                                            : (userRole === 'author' && user._id !== book.addedBy._id) ?
                                                 <>
                                                     <Card.Footer className={homeStyle.footer}>
                                                         <div className={homeStyle['footer-actions']}>
-                                                            <Button title='write reviews' variant="primary" className="me-2">
-                                                                <Link style={{ textDecoration: "none", color: "#fff" }} to={`/write-review/${book.alias}`}>
-                                                                    <i class="fa-solid fa-file-pen"></i>
-                                                                </Link>
-                                                            </Button>
                                                             <Button title='check reviews' style={{ marginLeft: '15px' }} variant="info">
                                                                 <Link style={{ textDecoration: 'none', color: '#fff', fontWeight: 'bold' }} to={`/reviews/${book.alias}`}>Reviews <i class="fa-solid fa-magnifying-glass"></i></Link>
                                                             </Button>
                                                         </div>
                                                         <Card.Text style={{ color: 'gray' }}><strong style={{ fontSize: '14px' }}>Added by:</strong> {book.addedBy.username}</Card.Text>
-
                                                     </Card.Footer>
                                                 </>
-                                                : !isLoadedUser ?
+                                                : userRole === 'reviewer' ?
                                                     <>
                                                         <Card.Footer className={homeStyle.footer}>
                                                             <div className={homeStyle['footer-actions']}>
+                                                                <Button title='write reviews' variant="primary" className="me-2">
+                                                                    <Link style={{ textDecoration: "none", color: "#fff" }} to={`/write-review/${book.alias}`}>
+                                                                        <i class="fa-solid fa-file-pen"></i>
+                                                                    </Link>
+                                                                </Button>
                                                                 <Button title='check reviews' style={{ marginLeft: '15px' }} variant="info">
                                                                     <Link style={{ textDecoration: 'none', color: '#fff', fontWeight: 'bold' }} to={`/reviews/${book.alias}`}>Reviews <i class="fa-solid fa-magnifying-glass"></i></Link>
                                                                 </Button>
                                                             </div>
                                                             <Card.Text style={{ color: 'gray' }}><strong style={{ fontSize: '14px' }}>Added by:</strong> {book.addedBy.username}</Card.Text>
+
                                                         </Card.Footer>
                                                     </>
-                                                    :
-                                                    <>
-                                                    </>
+                                                    : !isLoadedUser ?
+                                                        <>
+                                                            <Card.Footer className={homeStyle.footer}>
+                                                                <div className={homeStyle['footer-actions']}>
+                                                                    <Button title='check reviews' style={{ marginLeft: '15px' }} variant="info">
+                                                                        <Link style={{ textDecoration: 'none', color: '#fff', fontWeight: 'bold' }} to={`/reviews/${book.alias}`}>Reviews <i class="fa-solid fa-magnifying-glass"></i></Link>
+                                                                    </Button>
+                                                                </div>
+                                                                <Card.Text style={{ color: 'gray' }}><strong style={{ fontSize: '14px' }}>Added by:</strong> {book.addedBy.username}</Card.Text>
+                                                            </Card.Footer>
+                                                        </>
+                                                        :
+                                                        <>
+                                                        </>
                                         }
 
                                     </Card>
